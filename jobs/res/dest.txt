@@ -1,6 +1,0 @@
-u0 c1 T
-u2 c1 R
-u0 c0 R
-u2 c0 T
-u1 c0 T
-u1 c1 T
