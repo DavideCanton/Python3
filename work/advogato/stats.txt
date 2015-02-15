@@ -1,4 +1,0 @@
-max 2283
-
-> adv_data = read.csv("C:/Users/Kami/Documents/workspace/Python3/work/advogato/advogato_in_neighbors.txt", TRUE, " ")
-> adv_data$Range[adv_data$Range > 2283] = 2283
