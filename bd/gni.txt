@@ -1,0 +1,9 @@
+A BC DEFG
+
+A -> C
+A E -> G
+B -> A E
+B D -> F
+F -> B
+B C -> D
+G -> A

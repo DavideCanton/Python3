@@ -1,0 +1,46 @@
+__author__ = 'davide'
+
+import numpy as np
+
+class HaarWavelet:
+    def __init__(self, signal):
+        l = len(signal)
+        if l and (l & (l - 1)):
+            raise ValueError()
+        a = signal
+        res = np.zeros_like(a)
+        l = len(a)
+        while len(a) > 1:
+            m = (a[::2] + a[1::2]) / 2.0
+            res[l - len(m):l] = m - a[::2]
+            l -= len(m)
+            a = m
+        res[0] = a[0]
+        self.signal = res
+
+    def __getitem__(self, i):
+        l = 0
+        u = len(self.signal) - 1
+        p = 1
+        v = self.signal[0]
+        while l < u:
+            m = (l + u) // 2
+            if i <= m:
+                v -= self.signal[p]
+                p *= 2
+                u = m
+            else:
+                v += self.signal[p]
+                p = 2 * p + 1
+                l = m + 1
+        return v
+
+
+if __name__ == "__main__":
+    s = np.array([1.,4,6,8,9,10,11,12])
+    w = HaarWavelet(s)
+    print(s)
+    print(w.signal)
+    d = np.array([w[i] for i in range(len(s))])
+    print(d)
+    print(np.array_equal(s, d))

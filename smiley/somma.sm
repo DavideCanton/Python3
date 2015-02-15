@@ -1,0 +1,34 @@
+#leggo e vado avanti
+
+:S :) 
+
+#metto 48
+
+:P :< :< :< :< :<
+:)
+:P :< :< :< :<
+:( :+
+
+#sottraggo dal numero letto 48 (ottengo il valore)
+
+:( :- 
+
+#leggo il prossimo
+
+:) :S 
+
+#sommo al valore il codice ascii del secondo
+
+:( :+ 
+
+#stampo il numero (ovvero val1 + val2 + 48 = codice ascii del risultato)
+
+:D :) 
+
+#cancello e metto 10 nella cella dopo il risultato
+
+U_U :P :< :< :< :P :P
+
+#stampo 10 (ritorno a capo)
+
+:D

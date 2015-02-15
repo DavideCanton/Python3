@@ -1,0 +1,3 @@
+LIBRARY cqueens_csp.pyd
+EXPORTS
+PyInit_cqueens_csp
