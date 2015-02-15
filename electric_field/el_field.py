@@ -7,7 +7,7 @@ from tkinter.messagebox import showinfo
 
 WIDTH = 800
 HEIGHT = 600
-#RADIUS = 10
+# RADIUS = 10
 K = 9E9
 INCR = 50
 NORM = 20
