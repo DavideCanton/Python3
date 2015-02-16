@@ -46,7 +46,8 @@ class Solver:
 
 def not_stable(A):
     M = np.tril(A)
-    N = np.triu(A) - np.diag(np.diag(A))
+    N = np.triu(A)
+    N[np.diag_indices_from(N)] = 0.
     B = np.dot(np.linalg.inv(M), -N)
     l, _ = np.linalg.eig(B)
     return max(abs(l)) >= 1
@@ -61,19 +62,19 @@ if __name__ == "__main__":
 
         if np.count_nonzero(A) == 0:
             exit("Matrice nulla")
-        #if 0 in np.diag(A):
-        #    print("Scambio")
-        #    A = A[[1, 0]]
+        # if 0 in np.diag(A):
+        # print("Scambio")
+        # A = A[[1, 0]]
 
-        print("A matrix:")
-        print(A)
-
-        #if not_stable(A):
-        #    exit("Metodo non stabile")
-        #print("Non stabile!")
+        # if not_stable(A):
+        # exit("Metodo non stabile")
+        # print("Non stabile!")
 
         if not not_stable(A):
             break
+
+    print("A matrix:")
+    print(A)
 
     print("rhs vector:")
     print(b)
@@ -109,7 +110,8 @@ if __name__ == "__main__":
         print("ERROR!")
 
     fig = plt.figure()
-    plt.title("Iteration of Gauss-Seidel Method with A={} and b={}".format(A, b))
+    plt.title(
+        "Iteration of Gauss-Seidel Method with A={} and b={}".format(A, b))
     ax = fig.add_subplot(111, projection='3d')
     ax.plot(x, y, z, "bo-")
     plt.show()

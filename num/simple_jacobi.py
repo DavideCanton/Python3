@@ -20,24 +20,15 @@ for i in range(A.shape[0]):
 print()
 
 x = np.zeros_like(b)
-diag_A = np.diagonal(A).copy()
-v = b / diag_A
-B = -A.copy()
-B[np.diag_indices_from(A)] = 0
-B = np.einsum('ij,i->ij', B, 1 / diag_A)
+diag = np.diag(A)
 
 for it_count in range(ITERATION_LIMIT):
     print("Current solution:", x)
-    # x_new = np.zeros_like(x)
 
-    #for i in range(A.shape[0]):
-    #    s1 = np.dot(A[i, :i], x[:i])
-    #    s2 = np.dot(A[i, i + 1:], x[i + 1:])
-    #    x_new[i] = (b[i] - s1 - s2) / A[i, i]
+    s = np.dot(A, x) - (diag * x)
+    x_new = (b - s) / diag
 
-    x_new = np.dot(B, x) + v
-
-    if np.allclose(x, x_new, rtol=1e-10):
+    if np.allclose(x, x_new, atol=1e-16, rtol=0):
         break
 
     x = x_new

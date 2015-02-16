@@ -29,7 +29,7 @@ for it_count in range(ITERATION_LIMIT):
         s2 = np.dot(A[i, i + 1:], x[i + 1:])
         x_new[i] = (b[i] - s1 - s2) / A[i, i]
 
-    if np.allclose(x, x_new, rtol=1e-8):
+    if np.allclose(x, x_new, atol=1e-10, rtol=0):
         break
 
     x = x_new

@@ -36,7 +36,7 @@ def chvatal(elements, costs, subsets):
         # set xk to 1
         sol[k] = 1
         # remove covered elements
-        target = set(subsets[k])
+        target = subsets[k]
         elements -= target
 
         # remove covered elements from subsets

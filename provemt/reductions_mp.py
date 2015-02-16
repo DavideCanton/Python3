@@ -1,7 +1,7 @@
 import string
-from pyIA2.logic import Parser
-from pyIA2.sat import wsat_solve
-from pyIA2.reductions import buildFormulaIS
+from pyIA.logic import Parser
+from pyIA.sat import wsat_solve
+from pyIA.reductions import buildFormulaIS
 from multiprocessing import Manager, Process, current_process,\
     Event, RLock
 from random import choice

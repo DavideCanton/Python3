@@ -7,7 +7,6 @@ import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 from collections import deque
 import itertools as it
-from multiprocessing.pool import Pool
 
 
 def compute_x(i, x, row, b):
@@ -18,19 +17,19 @@ def compute_x(i, x, row, b):
 
 class Solver:
     def __init__(self, start_x):
-        self.pool = Pool(4)
         self.done = False
         self.x = start_x
-        self.A = self.b = None
+        self.A = self.b = self.diag = None
 
     def set_params(self, A, b):
         self.A = A
         self.b = b
+        self.diag = np.diag(A)
 
     def iterate_sol(self):
         while not self.done:
-            sol_iter = zip(it.count(), it.repeat(self.x), self.A, self.b)
-            res = self.pool.starmap(compute_x, sol_iter)
+            s = np.dot(self.A, self.x) - (self.diag * self.x)
+            res = (self.b - s) / self.diag
             self.x = res
             yield np.array(res)
 
@@ -39,19 +38,18 @@ class Solver:
 
     def end(self):
         self.done = True
-        self.pool.close()
 
 
 def unstable(A):
     B = -A.copy()
     B[np.diag_indices_from(B)] = 0
-    B = np.einsum('ij,i->ij', B, 1 / np.diagonal(A))
+    B = np.einsum('ij,i->ij', B, 1 / np.diag(A))
     l, _ = np.linalg.eig(B)
     max_eig = np.abs(l).max()
     return max_eig >= 1
 
 
-if __name__ == "__main__":
+def main():
     N = 3
 
     while True:
@@ -110,3 +108,7 @@ if __name__ == "__main__":
     ax = fig.add_subplot(111, projection='3d')
     ax.plot(x, y, z, "bo-")
     plt.show()
+
+
+if __name__ == "__main__":
+    main()

@@ -7,7 +7,7 @@ I = random.randint(5, 10)
 elem = set(range(I))
 
 subsets = [set(random.sample(elem, random.randint(1, I)))
-           for _ in range(random.randint(1, 3))]
+           for _ in range(random.randint(10, 20))]
 costs = np.random.randint(10, 30, len(subsets))
 
 print("Elements =", I)
