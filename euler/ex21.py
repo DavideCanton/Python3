@@ -1,26 +1,30 @@
 __author__ = 'Davide'
 
-
-def divisors(n):
-    for i in range(1, n // 2 + 1):
-        if n % i == 0:
-            yield i
+from math import floor
 
 
 def sum_divisors(n):
-    return sum(divisors(n))
+    s = 1
+    l = floor(n ** 0.5) + 1
+    for i in range(2, l):
+        if n % i == 0:
+            s += i
+            if i != n // i:
+                s += n // i
+    return s
 
 
-def amicable(a, b):
-    if a > b:
-        a, b = b, a
-    return sum_divisors(a) == b and sum_divisors(b) == a
+def main():
+    s = 0
+    for a in range(1, 10000):
+        b = sum_divisors(a)
+        if b > a:
+            c = sum_divisors(b)
+            if c == a:
+                print(a, b, "amicabili")
+                s += a + b
+    print(s)
 
 
 if __name__ == "__main__":
-    s = 0
-    for i in range(1, 10000):
-        for j in range(i + 1, 10000):
-            if amicable(i, j):
-                s += i
-    print(s)
+    main()
