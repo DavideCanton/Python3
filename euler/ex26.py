@@ -13,7 +13,7 @@ def useless(n):
 def period_len(n):
     r = 1
     for i in range(n):
-        r = (r * 10 % n)
+        r = (r * 10) % n
     r0 = r
     l = 0
     r = r0
