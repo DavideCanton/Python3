@@ -52,11 +52,18 @@ def is_prime(n):
 
 def main():
     r = []
-    for i in range(2, 200000):
-        a = is_prime(i)
-        b = is_prime_mr(i)
+    for i in range(2000):
+        n = 2 + int(
+            random.random() *
+            3872985723985723985729357248933872985723985572935724893387298572398)
+        n |= 1
+        print("Trying", n, end="-", flush=True)
+        a = is_prime(n)
+        print("1", end="-", flush=True)
+        b = is_prime_mr(n)
+        print("2")
         if a != b:
-            r.append((i, a, b))
+            r.append((n, a, b))
     print(r)
 
 

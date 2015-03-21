@@ -2,7 +2,7 @@ import ott.setcovering
 import random
 import numpy as np
 
-I = random.randint(5, 10)
+I = random.randint(50, 100)
 
 elem = set(range(I))
 

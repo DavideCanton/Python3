@@ -12,7 +12,7 @@ def main():
     print("-" * 5)
 
     s1 = HardCPUPlayer(b, "X")
-    s2 = HardCPUPlayer(b, "O")
+    s2 = EasyCPUPlayer(b, "O")
     # s2 = HumanPlayer(b, "O")
     players = [s1, s2]
     g = random.choice([s1, s2])

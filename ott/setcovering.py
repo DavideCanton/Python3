@@ -61,9 +61,10 @@ def aggMolt(elements, costs, subsets):
     # setup lambda list, lambda cost and A matrix
     lambda_list = np.zeros(len(elements))
     lambda_cost = np.array(costs)
-    A = np.zeros([len(elements), len(subsets)], order='F')
+    A = np.zeros([len(subsets), len(elements)])
     for i, subset in enumerate(subsets):
-        A[:, i].put(list(subset), 1)
+        A[i, :].put(list(subset), 1)
+    A = A.T
     zlr = 0
     x = np.zeros_like(lambda_cost)
 

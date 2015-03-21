@@ -7,7 +7,8 @@ from scipy.sparse import dok_matrix, rand
 if __name__ == "__main__":
     n = 100
     m = 500
-    g = igraph.Graph.Static_Power_Law(n, m, exponent_in=2.5, exponent_out=2)
+    g = igraph.Graph.Static_Power_Law(n, m, exponent_in=2.5,
+                                      exponent_out=2)
 
     img = Image.new("L", (n, n), "white")
     pix = img.load()

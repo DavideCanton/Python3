@@ -11,7 +11,7 @@ def load_image(name, colorkey=None):
     try:
         image = pygame.image.load(fullname)
     except pygame.error as message:
-        sys.exit(message)
+        sys._exit(message)
     image = image.convert_alpha()
     if colorkey:
         if colorkey == -1:

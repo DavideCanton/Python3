@@ -86,7 +86,8 @@ def search(p1, p2, verbose=False):
 def main():
     FROM, TO = sys.argv[1:]
 
-    res = search(pathlib.Path(FROM), pathlib.Path(TO))
+    res = search(pathlib.Path(FROM).resolve(),
+                 pathlib.Path(TO).resolve())
     for x in sorted(res.added):
         print("+", x)
     for x in sorted(res.removed):
