@@ -49,9 +49,9 @@ def getTypeName(i):
 
 if __name__ == "__main__":
     f = operator.itemgetter(1)
-    for type in Types:
-        value = type.value
-        name = type.name
+    for type_ in Types:
+        value = type_.value
+        name = type_.name
         if not (value and value % 3):
             print()
         print("{:02}) {}".format(value + 1, name), end="\t" * 5)

@@ -2,7 +2,7 @@ __author__ = 'Davide'
 
 import turtle
 
-EDGES = 7
+EDGES = 6
 LEN = 200
 ANGLE = 45
 

@@ -3,6 +3,7 @@ __author__ = 'davide'
 import time
 import multiprocessing as mp
 
+
 def father(p):
     print("Il padre invia")
     p.send(1)
@@ -20,6 +21,7 @@ def son(p):
     time.sleep(5)
     p.send(v1 + v2)
     print("Il figlio termina")
+
 
 if __name__ == "__main__":
     (p1, p2) = mp.Pipe()

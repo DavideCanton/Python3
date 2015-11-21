@@ -1,5 +1,6 @@
 __author__ = 'Davide'
 
+
 # prob models
 def equiprob(n):
     return {i: 1 / (n + 1) for i in range(n + 1)}
@@ -46,7 +47,7 @@ def halves(tol=1e-8):
 
 
 if __name__ == "__main__":
-    m1 = 2, 1
+    m1 = 1, 2
 
     d1 = halves(tol=1e-2)
     d2 = halves(tol=1e-2)

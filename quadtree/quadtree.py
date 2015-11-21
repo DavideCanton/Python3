@@ -156,7 +156,7 @@ class QuadTree:
 
 def main():
     data = [(randint(0, 128), randint(0, 128)) for _ in range(10)]
-    #data = [(30, 90)]
+    # data = [(30, 90)]
     qt = QuadTree([], 128.0, 128.0)
 
     for i, d in enumerate(data, start=1):

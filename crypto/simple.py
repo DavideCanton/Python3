@@ -1,4 +1,4 @@
-from math import *
+import math
 import itertools as it
 
 
@@ -18,7 +18,7 @@ def sqEncode(word):
     def _split(iterable, n):
         return list(zip(*[iter(iterable)] * n))
 
-    sql = int(ceil(sqrt(len(word))))
+    sql = int(math.ceil(math.sqrt(len(word))))
     word += " " * (sql * sql - len(word))
     list_word = _split(word, sql)
     return ("".join(it.chain(*zip(*list_word)))).rstrip()
@@ -49,5 +49,5 @@ def main():
 
 
 if __name__ == "__main__":
-    print((lambda s: (lambda sq=int(ceil(len(s) ** 0.5)): "".join(t[1] for t in sorted(
+    print((lambda s: (lambda sq=int(math.ceil(len(s) ** 0.5)): "".join(t[1] for t in sorted(
         [((lambda q=divmod(i, sq): (q[1] * sq + q[0]))(), c) for i, c in enumerate(s + " " * (sq * sq - len(s)))])))())(input("Stringa>")))

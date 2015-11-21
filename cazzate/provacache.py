@@ -1,8 +1,8 @@
-from functools import lru_cache
+import functools
 import random
 
 
-@lru_cache(maxsize=None)
+@functools.lru_cache(maxsize=None)
 def fib_cached(n):
     if n < 0:
         raise ValueError(str(n))
@@ -11,7 +11,7 @@ def fib_cached(n):
     return fib_cached(n - 1) + fib_cached(n - 2)
 
 
-@lru_cache(maxsize=None)
+@functools.lru_cache(maxsize=None)
 def fatt_cached(n):
     if n < 0:
         raise ValueError(str(n))
@@ -20,7 +20,7 @@ def fatt_cached(n):
     return n * fatt_cached(n - 1)
 
 
-@lru_cache(maxsize=None)
+@functools.lru_cache(maxsize=None)
 def double_fatt_cached(n):
     if n < 0:
         raise ValueError(str(n))

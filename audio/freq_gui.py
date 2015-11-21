@@ -31,6 +31,6 @@ def generate(fn):
 
 
 if __name__ == "__main__":
-    fn = r"D:/sp.wav"
+    fn = r"D:\Roba\music\07 - Racecars.wav"
     plt, _ = animate(lambda: generate(fn), CHUNK, MAX_H, 500)
     plt.show()

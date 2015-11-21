@@ -16,7 +16,8 @@ def draw_mandel(p):
 
     for ky in range(HEIGHT):
         for kx in range(WIDTH):
-            c = complex(xa + (xb - xa) * kx / WIDTH, ya + (yb - ya) * ky / HEIGHT)
+            c = complex(xa + (xb - xa) * kx / WIDTH,
+                        ya + (yb - ya) * ky / HEIGHT)
             z = complex(0.0, 0.0)
             for i in range(maxIt):
                 z = z ** p + c

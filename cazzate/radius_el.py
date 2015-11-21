@@ -1,7 +1,5 @@
-from collections import defaultdict
+import collections
 import pathlib
-
-TOP = []
 
 
 def add_edge(top, n1, n2):
@@ -13,7 +11,7 @@ def empty(top):
 
 
 def remove_leaves(top):
-    nd = defaultdict(int)
+    nd = collections.defaultdict(int)
     for (a, b) in top:
         nd[a] += 1
         nd[b] += 1
@@ -24,7 +22,7 @@ def remove_leaves(top):
 
 
 def main():
-    global TOP
+    TOP = []
 
     with pathlib.Path("files/in.txt").open() as fp:
         n = 0

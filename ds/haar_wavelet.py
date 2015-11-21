@@ -24,7 +24,7 @@ class HaarWavelet:
 
     def __getitem__(self, item):
         lower = 0
-        upper = len(self.signal) - 1
+        upper = self.signal.shape[0] - 1
         position = 1
         value = self.signal[0]
         while lower < upper:

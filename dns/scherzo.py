@@ -1,6 +1,7 @@
+import socketserver
+
 __author__ = 'davide'
 
-import socketserver
 
 def getData(data):
     tid = data[:2]
@@ -19,8 +20,9 @@ def getData(data):
         if last == 0:
             last = -1
     s = ".".join("".join(x) for x in l)
-    #print(s)
+    # print(s)
     return tid, name
+
 
 def getResp(tid, name):
     buf = [tid, b"\x81\x80\0\x01\0\x01\0\0\0\0", name,
@@ -36,6 +38,7 @@ class MyUDPHandler(socketserver.BaseRequestHandler):
         resp = getResp(tid, name)
         socket.sendto(resp, self.client_address)
         self.server.shutdown()
+
 
 if __name__ == "__main__":
     HOST, PORT = "", 53

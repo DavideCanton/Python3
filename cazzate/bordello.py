@@ -1,10 +1,10 @@
-C = type('C+-3', (object,),
-         {'a': lambda self: setattr(self, 'x', 1 + getattr(self, 'x')),
-          '__init__': lambda self: setattr(self, 'x', 0),
-          'd': lambda self, x: __import__('so'[::-1]).remove(x)}
-         )
+f2 = lambda l, k: list(filter(lambda s: s == s[::-1], map(lambda i: l[i:i + k], range(0, len(l) - k))))
 
-c = C()
-print(c.x)
-c.a()
-print(c.x)
+
+def main():
+    l = "abaaaa"
+    print(f2(l, 3))
+
+
+if __name__ == "__main__":
+    main()

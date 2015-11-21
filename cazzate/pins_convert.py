@@ -1,14 +1,15 @@
 __author__ = 'Kami'
 
-from bs4 import BeautifulSoup
 import json
+
+import bs4
 
 PATH = r"C:\Users\Kami\Google Drive\pins\Pin Evolution Table.html"
 DST = r"C:\Users\Kami\Google Drive\pins\Pin Evolution Table.json"
 
 if __name__ == "__main__":
     content = open(PATH).read()
-    soup = BeautifulSoup(content)
+    soup = bs4.BeautifulSoup(content)
 
     iterator = iter(soup.find_all("tr"))
     next(iterator)

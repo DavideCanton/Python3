@@ -1,9 +1,6 @@
 __author__ = 'Kami'
 
 from funcdep import FuncDep, keys_of, reduce_set, merge
-from random import random, randint, sample, seed
-from string import ascii_uppercase
-import sys
 
 
 def load_set(path):
@@ -20,7 +17,8 @@ def load_set(path):
 
 
 if __name__ == '__main__':
-    path = sys.argv[1]
+    # path = sys.argv[1]
+    path = "gni.txt"
 
     attlist, func_set = load_set(path)
     print("Original FD set:")

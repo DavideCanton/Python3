@@ -21,7 +21,7 @@ while True:
     if not p:
         break
 
-    #b = bytearray(LEFT * n * w)
+    # b = bytearray(LEFT * n * w)
     b = bytearray(p)
     for i in range(L * n * w):
         if random() < P:

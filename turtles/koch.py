@@ -32,7 +32,7 @@ if __name__ == "__main__":
 
     turtle.begin_fill()
     for d in range(1, DEPTH + 1):
-        turtle.speed(d + 1)
+        turtle.speed(d * 10)
         for _ in range(3):
             koch(turtle, length, d)
             turtle.right(120)

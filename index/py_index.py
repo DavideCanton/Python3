@@ -5,7 +5,6 @@ import pathlib
 import os
 import os.path
 
-
 CHUNK_SIZE = 200
 
 
@@ -54,9 +53,9 @@ def search(root_folder, pattern, db_path):
 
 
 if __name__ == "__main__":
-    # create_index(r"D:/Musica", r"D:/music_index.db")
+    # create_index(r"C:/Users/Davide/Music", r"D:/music_index.db")
     n = 0
-    for n, match in enumerate(search(r"D:/Musica", "*ko*",
+    for n, match in enumerate(search(r"C:/Users/Davide/Music", "*ACDC*",
                                      r"D:/music_index.db")):
         print(match)
     print("Found", n, "matches.")

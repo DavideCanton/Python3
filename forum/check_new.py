@@ -25,7 +25,7 @@ def get_hash(u, p, sess_id):
 
 
 def getpwd():
-    return "55thginkyloH"[::-1]
+    return ""
 
 
 def get_sess_id():

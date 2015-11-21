@@ -1,9 +1,8 @@
-from ctypes import cdll
+import ctypes
 import os
 import time
 
-
-myDll = cdll.LoadLibrary(os.path.join("lib", "Dialog.dll"))
+myDll = ctypes.cdll.LoadLibrary(os.path.join("lib", "Dialog.dll"))
 
 
 def show_dialog(message, title="Python Dialog"):

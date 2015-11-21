@@ -84,7 +84,7 @@ def pmain():
 
 
 def main():
-    execute(True)
+    execute(verbose=True)
 
 
 if __name__ == "__main__":

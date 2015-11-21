@@ -1,12 +1,10 @@
-__author__ = 'davide'
-
 import sqlite3
-import string
 import sys
-import itertools as it
 import operator
-from functools import partial
-from datetime import date
+import functools
+import datetime
+
+__author__ = 'davide'
 
 MESI = "ABCDEHLMPRST"
 DISPARI = [1, 0, 5, 7, 9, 13, 15, 17, 19, 21, 2, 4, 18,
@@ -14,7 +12,7 @@ DISPARI = [1, 0, 5, 7, 9, 13, 15, 17, 19, 21, 2, 4, 18,
 ORD_0 = ord("0")
 ORD_A = ord("A")
 
-vocale_pred = partial(operator.contains, set("AEIOU"))
+vocale_pred = functools.partial(operator.contains, set("AEIOU"))
 
 
 def pari(char):
@@ -97,7 +95,7 @@ def parse_input():
 
     try:
         giorno, mese, anno = map(int, data.split("/"))
-        data = date(anno, mese, giorno)
+        data = datetime.date(anno, mese, giorno)
     except ValueError:
         exit("Data non valida!")
 

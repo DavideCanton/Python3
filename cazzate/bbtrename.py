@@ -1,8 +1,8 @@
-__author__ = 'davide'
-
 import pathlib
 import re
-from sys import stderr, argv
+import sys
+
+__author__ = 'davide'
 
 RE_EPISODE = re.compile(r"S(\d+)E(\d+)")
 APOSTROFI = re.compile(r"(?<=L) (?=[AEIOU])")
@@ -16,8 +16,8 @@ def remove_trail_parts(parts):
 
 
 if __name__ == "__main__":
-    DIR = argv[1]
-    # DIR = r"G:\The Big Bang Theory\8 serie"
+    # DIR = argv[1]
+    DIR = r"F:\The Big Bang Theory\8 serie"
     path = pathlib.Path(DIR)
 
     for filename in path.iterdir():
@@ -50,6 +50,4 @@ if __name__ == "__main__":
                     filename.rename(new_path)
                     print("OK!")
                 except OSError as e:
-                    print(e, file=stderr)
-
-
+                    print(e, file=sys.stderr)

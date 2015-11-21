@@ -38,18 +38,19 @@ if __name__ == "__main__":
 
         circle(screen, THECOLORS["black"], CENTER, RADIUS, 3)
 
-        #secondi
+        # secondi
         line(screen, THECOLORS["black"], CENTER, dest)
         sangle = (sangle + .25) % 360
 
-        #minuti
+        # minuti
         mangle = radians(-90 + 6 * n.minute)
         mdest = RADIUS + RADIUS * cos(mangle), RADIUS + RADIUS * sin(mangle)
         line(screen, THECOLORS["black"], CENTER, mdest, 4)
 
-        #ore
+        # ore
         hangle = radians(-90 + 30 * n.hour)
-        hdest = RADIUS + RADIUS // 2 * cos(hangle), RADIUS + RADIUS // 2 * sin(hangle)
+        hdest = RADIUS + RADIUS // 2 * cos(hangle), RADIUS + RADIUS // 2 * sin(
+            hangle)
         line(screen, THECOLORS["black"], CENTER, hdest, 4)
 
         n = datetime.now()

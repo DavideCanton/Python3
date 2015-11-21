@@ -1,9 +1,9 @@
-from ctypes import cdll
+import ctypes
 import os.path
-from socket import *
+import socket
 
-myDll = cdll.LoadLibrary(os.path.join("lib", "Dialog.dll"))
-s = socket()
+myDll = ctypes.cdll.LoadLibrary(os.path.join("lib", "Dialog.dll"))
+s = socket.socket()
 s.bind(("", 8000))
 s.listen(1)
 while True:

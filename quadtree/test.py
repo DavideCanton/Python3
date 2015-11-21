@@ -1,7 +1,7 @@
 __author__ = 'davide'
 
 import unittest
-from quadtree import quadtree
+import quadtree
 
 
 class MyTestCase(unittest.TestCase):

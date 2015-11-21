@@ -12,15 +12,13 @@ def ch_nodes(a, b, n):
 def main():
     a = -5
     b = 5
-    n = 7
-    pol_deg = 6
-    x = np.r_[a:b:1000j]
+    n = 11
+    pol_deg = n - 1
+    x = np.linspace(a, b, 1000)
     f = np.frompyfunc(lambda xx: 1 / (25 * xx ** 2 + 1), 1, 1)
-    sample_x = np.r_[a:b:n * 1j]
+    sample_x = np.linspace(a, b, n)
     ch_nodes_func = ch_nodes(a, b, n)
-    sample_x_ch = np.fromiter(map(ch_nodes_func, range(1, n + 1)),
-                              dtype=np.float)
-
+    sample_x_ch = ch_nodes_func(np.arange(1, n + 1, dtype=np.float))
     plt.suptitle("$f(x) = 1/(1+25x^2)$", fontsize=20)
 
     # polynomials

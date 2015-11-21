@@ -4,6 +4,7 @@ import numpy as np
 from collections import deque
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
+import numpy.random as nprand
 
 
 class Solver:
@@ -56,9 +57,9 @@ def not_stable(A):
 if __name__ == "__main__":
     N = 3
 
-    b = np.random.rand(N) * 10 - 5
+    b = nprand.rand(N, 1) * 10 - 5
     while True:
-        A = np.random.rand(N, N) * 10 - 5
+        A = nprand.rand(N, N) * 10 - 5
 
         if np.count_nonzero(A) == 0:
             exit("Matrice nulla")

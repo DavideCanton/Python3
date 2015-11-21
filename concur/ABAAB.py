@@ -1,10 +1,13 @@
-from threading import Thread, Lock
-from KamiSemaphore import *
+import contextlib
+import threading
+import io
+
+from concur import KamiSemaphore
 
 
-class A(Thread):
+class A(threading.Thread):
     def __init__(self, semA, semB, mutex):
-        Thread.__init__(self)
+        threading.Thread.__init__(self)
         self.semA = semA
         self.semB = semB
         self.mutex = mutex
@@ -16,9 +19,9 @@ class A(Thread):
         self.semB.release()
 
 
-class B(Thread):
+class B(threading.Thread):
     def __init__(self, semA, semB, mutex):
-        Thread.__init__(self)
+        threading.Thread.__init__(self)
         self.semA = semA
         self.semB = semB
         self.mutex = mutex
@@ -30,20 +33,19 @@ class B(Thread):
         self.semA.release(2)
 
 
-import sys
-from io import StringIO
-output = StringIO()
-sys.stdout = output
-semA = KamiSemaphoreT(1)
-semB = KamiSemaphoreT(1)
-mutex = Lock()
-threads = ([A(semA, semB, mutex) for _ in range(3)] +
-           [B(semA, semB, mutex) for _ in range(2)])
-for t in threads:
-    t.start()
-for t in threads:
-    t.join()
-sys.stdout = sys.__stdout__
+output = io.StringIO()
+
+with contextlib.redirect_stdout(output):
+    semA = KamiSemaphore.KamiSemaphoreT(1)
+    semB = KamiSemaphore.KamiSemaphoreT(1)
+    mutex = threading.Lock()
+    threads = ([A(semA, semB, mutex) for i in range(3)] +
+               [B(semA, semB, mutex) for j in range(2)])
+    for t in threads:
+        t.start()
+    for t in threads:
+        t.join()
+
 result = output.getvalue()
 if result == "ABAAB":
     print("OK")

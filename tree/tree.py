@@ -1,6 +1,7 @@
 from sys import stdout
 from collections import deque
 
+
 class TreeNode:
     def __init__(self, val=None, left=None, right=None, depth=0):
         self.val = val
@@ -14,6 +15,11 @@ class TreeNode:
 
     def __repr__(self):
         return "TreeNode: {}".format(self.val)
+
+
+class TreeError(Exception):
+    def __init__(self, msg):
+        self.msg = msg
 
 
 class BinaryTree:

@@ -1,12 +1,12 @@
 import heapq as hq
-from collections import deque
-from functools import total_ordering
-from random import shuffle
+import collections
+import functools
+import random
 
 import numpy as np
 
 
-@total_ordering
+@functools.total_ordering
 class Node:
     def __init__(self, content, parent=None, value=0, depth=0):
         self.content = content
@@ -116,18 +116,18 @@ class Randomized:
 
     def __call__(self, *a, **kw):
         children = list(self.gen(*a, **kw))
-        shuffle(children)
+        random.shuffle(children)
         yield from children
 
 
 def depth_first(start, is_goal, gen_children):
     return generic_search(start, is_goal, gen_children,
-                          deque(), deque.popleft, deque.appendleft)
+                          collections.deque(), collections.deque.popleft, collections.deque.appendleft)
 
 
 def breadth_first(start, is_goal, gen_children):
     return generic_search(start, is_goal, gen_children,
-                          deque(), deque.pop, deque.appendleft)
+                          collections.deque(), collections.deque.pop, collections.deque.appendleft)
 
 
 class NeighborsGenerator:

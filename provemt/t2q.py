@@ -1,21 +1,21 @@
-from threading import Thread, Condition
+import threading
+from multiprocessing import cpu_count
 import time
-from collections import deque
-from random import randint
+import collections
+import random
 
 
 class Queue:
     def __init__(self):
-        self.q = deque()
+        self.q = collections.deque()
         # implicit lock in the condition
-        self.empty = Condition()
+        self.empty = threading.Condition()
 
     def get(self):
         with self.empty:
-            while not self.q:
-                self.empty.wait()
+            self.empty.wait_for(lambda: self.q)
             v = self.q.pop()
-        return v
+            return v
 
     def put(self, el):
         with self.empty:
@@ -23,7 +23,7 @@ class Queue:
             self.empty.notifyAll()
 
 
-class Worker(Thread):
+class Worker(threading.Thread):
     def __init__(self, task_q, result_q):
         super().__init__()
         self.task_q = task_q
@@ -33,9 +33,9 @@ class Worker(Thread):
         while True:
             task = self.task_q.get()
             if task is None:
-                print(self.name, "is exiting!")
+                # print(self.name, "is exiting!")
                 break
-            print("Doing some work in", self.name, ":", task)
+            # print("Doing some work in", self.name, ":", task)
             answer = task()
             self.result_q.put(answer)
 
@@ -46,19 +46,21 @@ class Task:
         self.b = b
 
     def __call__(self):
-        time.sleep(1)
+        time.sleep(random.randint(1, 5))
         return "{} * {} = {}".format(self.a, self.b,
                                      self.a * self.b)
 
     def __str__(self):
         return "{} * {}".format(self.a, self.b)
 
+
 if __name__ == '__main__':
     task_q = Queue()
     result_q = Queue()
-    nc = 4
+    nc = cpu_count() * 5
     print("Creo", nc, "consumatori")
-    nt = randint(10, 20)
+    # nt = randint(10, 20)
+    nt = 200
     print("Creo", nt, "task")
 
     for i in range(nc):

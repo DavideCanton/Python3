@@ -27,7 +27,7 @@ class PacMan(pygame.sprite.Sprite):
         self.rect = img.get_rect()
         self.speed = [1, 0]
 
-    def update(self, *args):
+    def update(self):
         self.rect.left += self.speed[0]
         self.rect.top += self.speed[1]
 

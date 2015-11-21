@@ -23,7 +23,7 @@ def denorm(x):
         limit //= 10
 
 
-if __name__ == "__main__":
+def main():
     a = np.array(np.random.randint(1, 20000, 10), dtype=float)
     b = a.copy()
     b /= b.sum()
@@ -37,3 +37,7 @@ if __name__ == "__main__":
 
     print(np.linalg.norm(a - c))
     print(c / c.sum())
+
+
+if __name__ == "__main__":
+    main()

@@ -2,7 +2,6 @@ __author__ = 'Davide'
 
 from PIL import Image
 import igraph
-from scipy.sparse import dok_matrix, rand
 
 if __name__ == "__main__":
     n = 100

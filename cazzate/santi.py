@@ -1,11 +1,10 @@
 from urllib.request import urlopen
 import re
-from tkinter import Tk, Label, Button
+import tkinter
 from tkinter.constants import FALSE, N
 from tkinter.font import Font
 from urllib.error import URLError
 from tkinter.messagebox import showerror
-
 
 url = "http://www.webrun.it/Santo.asp"
 # uso le lookbehind assertions
@@ -25,15 +24,15 @@ def getSaint():
     return "\n".join(result)
 
 
-class App(Tk):
+class App(tkinter.Tk):
     def __init__(self, master=None):
-        Tk.__init__(self, master)
+        tkinter.Tk.__init__(self, master)
         self.title("Santo")
         self.resizable(FALSE, FALSE)
-        self.center = Label(self, anchor=N, wraplength=300)
+        self.center = tkinter.Label(self, anchor=N, wraplength=300)
         self.center.configure(font=Font(size=16))
-        self.button = Button(self, text="Controlla Santo",
-                             command=self.controlla)
+        self.button = tkinter.Button(self, text="Controlla Santo",
+                                     command=self.controlla)
         self.button.grid(padx=80, pady=80)
         self.button.configure(font=Font(size=14))
         self.geometry("300x200")
@@ -46,6 +45,7 @@ class App(Tk):
             self.center.grid(padx=20, pady=40)
         except URLError as e:
             showerror("Errore", "Errore: {}".format(e))
+
 
 app = App()
 app.mainloop()

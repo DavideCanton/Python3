@@ -6,6 +6,7 @@ from PIL import Image
 DIRS = U, L, D, R, UL, UR, DL, DR = [(0, -1), (-1, 0), (0, 1), (1, 0), (-1, -1),
                                      (1, -1), (-1, 1), (1, 1)]
 
+
 def dist_2(p1, p2):
     dx = p1[0] - p2[0]
     dy = p1[1] - p2[1]
@@ -63,16 +64,16 @@ class NeighboursGeneratorDiag(NeighboursGenerator):
         if self._R(x, y):
             yield vsum(n, R), 1
         if (self._U(x, y) and self._L(x, y - 1) or
-            self._L(x, y) and self._U(x - 1, y)):
+                    self._L(x, y) and self._U(x - 1, y)):
             yield vsum(n, UL), SQRT_2
         if (self._U(x, y) and self._R(x, y - 1) or
-            self._R(x, y) and self._U(x + 1, y)):
+                    self._R(x, y) and self._U(x + 1, y)):
             yield vsum(n, UR), SQRT_2
         if (self._D(x, y) and self._L(x, y + 1) or
-            self._L(x, y) and self._D(x - 1, y)):
+                    self._L(x, y) and self._D(x - 1, y)):
             yield vsum(n, DL), SQRT_2
         if (self._D(x, y) and self._R(x, y + 1) or
-            self._R(x, y) and self._D(x + 1, y)):
+                    self._R(x, y) and self._D(x + 1, y)):
             yield vsum(n, DR), SQRT_2
 
 
@@ -91,7 +92,7 @@ class NeighborsGeneratorPruning(NeighboursGeneratorDiag):
             move = current - parent
             move = normalize(move)
 
-            if move.all(): #se nessuno e' 0 allora e' una mossa diagonale
+            if move.all():  # se nessuno e' 0 allora e' una mossa diagonale
                 neighbors = self._pruneDiag(neighbors, current, move)
             else:
                 neighbors = self._pruneStraight(neighbors, current, move)
@@ -124,15 +125,17 @@ class NeighborsGeneratorPruning(NeighboursGeneratorDiag):
     def _pruneStraight(self, neighbors, n, move):
         pruned = [n + move]
         pruned.extend(self.compute_forcedStraight(n, move))
-        return [p for p in pruned if any(np.array_equal(p, x) for x in neighbors)]
+        return [p for p in pruned if
+                any(np.array_equal(p, x) for x in neighbors)]
 
     def _pruneDiag(self, neighbors, n, move):
         pruned = [n + d for d in components(move)]
-        #if all(self.labyrinth[x] == 1 for x in pruned):
+        # if all(self.labyrinth[x] == 1 for x in pruned):
         pruned.append(n + move)
         parent = n - move
         pruned.extend(self.compute_forcedDiag(parent, move))
-        return [p for p in pruned if any(np.array_equal(p, x) for x in neighbors)]
+        return [p for p in pruned if
+                any(np.array_equal(p, x) for x in neighbors)]
 
     def _jump(self, current, direction, goal):
         next = current + direction
@@ -143,7 +146,7 @@ class NeighborsGeneratorPruning(NeighboursGeneratorDiag):
         isDiag = direction.all()
         if isDiag:
             if all(not self.labyrinth[current + dirs]
-                for dirs in components(direction)):
+                   for dirs in components(direction)):
                 return None
             forced = self.compute_forcedDiag(current, direction)
         else:
@@ -174,7 +177,7 @@ class NeighborsGeneratorPruning(NeighboursGeneratorDiag):
                 isDiag = el.direction.all()
                 if isDiag:
                     if all(not self.labyrinth[el.current + dirs]
-                        for dirs in components(direction)):
+                           for dirs in components(direction)):
                         retval = None
                         continue
                     forced = self.compute_forcedDiag(el.current, el.direction)
@@ -193,7 +196,8 @@ class NeighborsGeneratorPruning(NeighboursGeneratorDiag):
                     stack.append(snapshot)
                     continue
                 else:
-                    snapshot = Snapshot(next, el.direction, el.goal, None, None, 0)
+                    snapshot = Snapshot(next, el.direction, el.goal, None, None,
+                                        0)
                     stack.append(snapshot)
                     continue
             elif el.stage == 1:
@@ -203,7 +207,8 @@ class NeighborsGeneratorPruning(NeighboursGeneratorDiag):
                     continue
                 el.stage = 2
                 stack.append(el)
-                snapshot = Snapshot(el.next, el.dirs[1], el.goal, el.next, el.dirs, 0)
+                snapshot = Snapshot(el.next, el.dirs[1], el.goal, el.next,
+                                    el.dirs, 0)
                 stack.append(snapshot)
                 continue
             elif el.stage == 2:
@@ -211,7 +216,8 @@ class NeighborsGeneratorPruning(NeighboursGeneratorDiag):
                 if r2 is not None:
                     retval = el.next
                     continue
-                snapshot = Snapshot(el.next, el.direction, el.goal, None, None, 0)
+                snapshot = Snapshot(el.next, el.direction, el.goal, None, None,
+                                    0)
                 stack.append(snapshot)
                 continue
         return retval
@@ -228,7 +234,7 @@ class NeighborsGeneratorPruning(NeighboursGeneratorDiag):
             isDiag = direction.all()
             if isDiag:
                 if all(not self.labyrinth[current + dirs]
-                    for dirs in components(direction)):
+                       for dirs in components(direction)):
                     return None
                 forced = self.compute_forcedDiag(current, direction)
             else:
@@ -238,7 +244,7 @@ class NeighborsGeneratorPruning(NeighboursGeneratorDiag):
 
             if isDiag:
                 stack.extend((next, di, goal)
-                    for di in components(direction))
+                             for di in components(direction))
             else:
                 stack.append((next, direction, goal))
 
@@ -303,7 +309,7 @@ def load_from_img(imgpath):
 
     for i in range(w):
         for j in range(h):
-            #avoid alpha
+            # avoid alpha
             pixel = pix[j, i][:3]
             if pixel == (255, 255, 255):
                 labyrinth[i, j] = 1
@@ -363,7 +369,7 @@ def lab_to_im(labyrinth):
 
 if __name__ == "__main__":
     imgpath = r"D:\labyrinth\lab4.bmp"
-    #imgpath = r"D:\labyrinth\map\arena.map"
+    # imgpath = r"D:\labyrinth\map\arena.map"
     print("Reading labyrinth from {}...".format(imgpath))
     labyrinth, _ = load_from_img(imgpath)
     print("Read")

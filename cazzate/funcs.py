@@ -141,7 +141,7 @@ if __name__ == "__main__":
     print(f)
     print(f1)
 
-    #f = simplify(f)
+    # f = simplify(f)
     f1 = simplify(f1)
     print(f)
     print(f1)

@@ -3,8 +3,7 @@ __author__ = 'davide'
 from math import sin, cos, radians, tan, acos, sqrt, degrees, pi
 import numpy as np
 import pygame
-from pygame import draw
-from pygame.constants import *
+from pygame import *
 from pygame.color import THECOLORS
 
 W, H = 800, 600
@@ -40,7 +39,8 @@ class Bar(RotatableObject):
             end_pos = (self.start[0] + self.length * cos(radians(self.angle)),
                        self.start[1] - self.length * sin(radians(self.angle)))
         else:
-            end_pos = (self.start[0] + self.length * (90 - self.angle) / 90, self.start[1])
+            end_pos = (
+            self.start[0] + self.length * (90 - self.angle) / 90, self.start[1])
         draw.line(surf, THECOLORS["blue"], self.start, end_pos, 5)
 
     def is_horizontal(self):
@@ -68,7 +68,7 @@ class Source(RotatableObject):
                 N = np.array([0, -1])
             Ro = normalize(2 * N * (np.dot(Ri, N)) - Ri)
             Ro *= 1000
-            #draw.line(surf, THECOLORS["orange"], intI, intI + N * 100, 5)
+            # draw.line(surf, THECOLORS["orange"], intI, intI + N * 100, 5)
             draw.line(surf, THECOLORS["green"], intI, intI + Ro, 5)
         else:
             draw.line(surf, THECOLORS["red"], self.start, (W, W * tga), 5)

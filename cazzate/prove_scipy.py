@@ -9,7 +9,7 @@ if __name__ == "__main__":
     print(sys.num)
     print(sys.den)
 
-    #w, mag, phase = sys.bode()
+    # w, mag, phase = sys.bode()
     w, fr1 = sys.freqresp()
     fr, fc = np.real(fr1), np.imag(fr1)
     plt.figure(1)

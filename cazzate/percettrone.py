@@ -1,14 +1,22 @@
-from itertools import product
-from random import random
-from math import copysign
+import itertools
+import random
+import math
 # from cazzate.mybinary import bin_args
-from fractions import Fraction, gcd
-from functools import reduce
+import fractions
+import functools
 import numpy as np
 
-near = lambda x, y: abs(x - y) <= 1E-8
-sign = lambda x: 0 if near(x, 0) else copysign(1, x)
-step = lambda x: int((sign(x) + 1) / 2.)
+
+def near(x, y):
+    return abs(x - y) <= 1E-8
+
+
+def sign(x):
+    return 0 if near(x, 0) else math.copysign(1, x)
+
+
+def step(x):
+    return int((sign(x) + 1) / 2.)
 
 
 class Percettrone:
@@ -33,11 +41,12 @@ class Percettrone:
                     self.w += self.l_rate * error * x
 
     def normalize(self):
-        fl = [abs(Fraction.from_float(f).limit_denominator().denominator)
+        fl = [abs(
+            fractions.Fraction.from_float(f).limit_denominator().denominator)
               for f in self.w]
-        mcm = reduce(lambda a, b: a * b / gcd(a, b), fl)
+        mcm = functools.reduce(lambda a, b: a * b / fractions.gcd(a, b), fl)
         self.w = [int(w * mcm) for w in self.w]
-        mcd = reduce(gcd, map(abs, self.w))
+        mcd = functools.reduce(fractions.gcd, map(abs, self.w))
         if mcd:
             self.w = [w // mcd for w in self.w]
 
@@ -55,6 +64,7 @@ def make_f(s, n):
 
     return f
 
+
 if __name__ == '__main__':
     n = int(input("n>"))
     m = int(input("m>"))
@@ -63,14 +73,14 @@ if __name__ == '__main__':
     # ts = [(s, f(*s)) for s in bin_args(n)]
     s = input("func>")
     f = make_f(s, n)
-    ts = [(list(s), f(*s)) for s in product(range(m * n), repeat=n)]
+    ts = [(list(s), f(*s)) for s in itertools.product(range(m * n), repeat=n)]
     p.train(ts)
     print("Pesi non normalizzati:", p.w)
     p.normalize()
     print("Pesi normalizzati:", p.w)
     print("Classificazione training set:")
     res = True
-    for t, e in zip(product(range(m * n), repeat=n), ts):
+    for t, e in zip(itertools.product(range(m * n), repeat=n), ts):
         pred = p.evaluate(t)
         expected = e[1]
         res &= pred == expected
@@ -80,7 +90,7 @@ if __name__ == '__main__':
     res = True
     falses = []
     for _ in range(10):
-        c = list(map(int, [random() * m for _ in range(n)]))
+        c = list(map(int, [random.random() * m for _ in range(n)]))
         r, t = f(*c), p.evaluate(c)
         res &= r == t
         if r != t:

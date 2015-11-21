@@ -1,0 +1,66 @@
+1 | Pilot | Questione di chimica
+2 | Cat's in the Bag... | Senza ritorno 
+3 | ...And the Bag's in the River | Conseguenze radicali
+4 | Cancer Man | Una malattia scomoda
+5 | Gray Matter | Materia grigia
+6 | Crazy Handful of Nothin' | Un pugno di mosche
+7 | A No-Rough-Stuff-Type Deal | Vendetta
+
+1 | Seven Thirty-Seven | Tutto cambia
+2 | Grilled | Grigliato
+3 | Bit by a Dead Bee | Punto da un'ape morta
+4 | Down | Giù
+5 | Breakage | Una pistola per Jesse
+6 | Peekaboo | Una lezione indimenticabile
+7 | Negro y Azul | Nero e azzurro
+8 | Better Call Saul | Conviene chiamare Saul
+9 | 4 Days Out | 4 giorni fuori
+10 | Over | Game Over
+11 | Mandala | Mandala
+12 | Phoenix | Phoenix
+13 | ABQ | Albuquerque
+
+1 | No Mas | Ora basta
+2 | Caballo sin Nombre | Cavallo senza nome
+3 | I.F.T. | Tradimento
+4 | Green Light | Luce verde
+5 | Mas | Di più
+6 | Sunset | Al tramonto
+7 | One Minute | Un minuto
+8 | I See You | Ti vedo
+9 | Kafkaesque | Atmosfere
+10 | Fly | Caccia grossa
+11 | Abiquiu | Scrupoli
+12 | Half Measures | Mezze misure
+13 | Full Measure | Niente mezze misure
+
+1 | Box Cutter | Il taglierino
+2 | Thirty-Eight Snub | Calibro 38
+3 | Open House | Casa aperta
+4 | Bullet Points | La versione di Skyler
+5 | Shotgun | L'autolavaggio
+6 | Cornered | Messi all'angolo
+7 | Problem Dog | Un cane difficile
+8 | Hermanos | Fratelli
+9 | Bug | Cimici
+10 | Salud | Alla salute
+11 | Crawl Space | Nuove identità
+12 | End Times | Cercando vendetta
+13 | Face Off | Fine della storia
+
+1 | Live Free or Die | Vivi libero o muori
+2 | Madrigal | L'affare tedesco
+3 | Hazard Pay | Indennità di rischio
+4 | Fifty-One | Un ambiente migliore
+5 | Dead Freight | Rapina al treno
+6 | Buyout | Buonuscita
+7 | Say My Name | Dì il mio nome
+8 | Gliding Over All | Volare alto
+9 | Blood Money | Denaro insanguinato
+10 | Buried | Questioni di famiglia
+11 | Confessions | Confessioni
+12 | Rabid Dog | Cane rabbioso
+13 | To'hajiilee | Riserva indiana
+14 | Ozymandias | Declino
+15 | Granite State | Tutto torna
+16 | Felina | Felina

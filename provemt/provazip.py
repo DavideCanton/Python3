@@ -1,7 +1,7 @@
-__author__ = 'davide'
-
 from multiprocessing.pool import Pool
 import itertools as it
+
+__author__ = 'davide'
 
 
 def compute(x, y):

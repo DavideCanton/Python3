@@ -15,7 +15,7 @@ def ema(s, alpha):
 if __name__ == "__main__":
     N = 100
     s = np.random.random_integers(0, 10, N)
-    #s[np.random.random_integers(0, len(s) - 1, N // 10)] += 10
+    # s[np.random.random_integers(0, len(s) - 1, N // 10)] += 10
 
     plt.plot(s, label="orig")
     for a in [0.2, 0.5, 0.8]:

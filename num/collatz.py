@@ -4,26 +4,26 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
-def ensure_collatz(n):
-    remainders = []
-    while n > 1:
-        remainders.append(n & 0x3)
-        if n & 1:
-            n = 3 * n + 1
-        else:
-            n >>= 1
-    return remainders
+def f(x):
+    x = 3 * x + 1
+    while x & 1 == 0:
+        x >>= 1
+    return x
+
+
+def f_n(x, n):
+    for i in range(n):
+        x = f(x)
+    return x
 
 
 def main():
-    l = []
+    x = 21
+    n = np.arange(1, 100)
+    y = np.fromiter((f_n(x, an) for an in n), dtype=np.uint64)
+    print(y)
 
-    for n in range(10000):
-        r = ensure_collatz(n)
-        l.append(len(r))
-
-    lengths = np.array(l, dtype=np.uint32)
-    plt.plot(lengths, "bx")
+    plt.plot(n, y)
     plt.show()
 
 
