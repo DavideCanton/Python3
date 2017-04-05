@@ -1,14 +1,12 @@
 __author__ = 'davide'
 
-__author__ = 'davide'
-
-import sys
-from PyQt5 import QtCore, QtGui
-from PyQt5.QtWidgets import QMainWindow, QApplication, QMessageBox, QLabel
-from gui import Ui_MainWindow
-from queens_csp import *
 from time import sleep
-from functools import partial
+
+from PyQt4 import QtCore
+from PyQt4.QtGui import QMainWindow, QApplication, QMessageBox, QLabel
+
+from queens_gui.gui import Ui_MainWindow
+from queens_gui.queens_csp import *
 
 W = "QLabel { background-color : white; color : black; }"
 B = "QLabel { background-color : black; color : white; }"
@@ -29,7 +27,8 @@ class QueenThread(QtCore.QThread):
         min_conflicts(self.gui.n, self.change, self.startCB)
 
     def startCB(self, sol, nc):
-        self.gui.status.setText("Starting from {} [conflicts={}]".format(sol, nc))
+        self.gui.status.setText(
+            "Starting from {} [conflicts={}]".format(sol, nc))
 
     def change(self, var, value, sol):
         sleep(.1)

@@ -1,3 +1,4 @@
+import itertools as it
 from collections import defaultdict
 
 __author__ = 'Davide'
@@ -48,10 +49,9 @@ def build_graph(t):
         else:
             level = level.split()
             for i in range(len(current_level)):
-                graph[Node(ind - 1, i, current_level[i])].append(
-                    Node(ind, i, level[i]))
-                graph[Node(ind - 1, i, current_level[i])].append(
-                    Node(ind, i + 1, level[i + 1]))
+                cur_node = Node(ind - 1, i, current_level[i])
+                graph[cur_node].append(Node(ind, i, level[i]))
+                graph[cur_node].append(Node(ind, i + 1, level[i + 1]))
             current_level = level
 
     return graph, root, ind
@@ -65,8 +65,8 @@ def edges(graph):
 
 def find_max_path(graph, root, max_i):
     end = Node(max_i + 1, 0, 0)
-    vals = (i for n in graph.values() for i in n)
-    all_nodes = [n for n in set(graph.keys()) | set(vals)]
+    vals = set(it.chain.from_iterable(graph.values()))
+    all_nodes = [n for n in set(graph.keys()) | vals]
     no_out = [n for n in all_nodes if n.i == max_i]
     for node in no_out:
         graph[node].append(end)

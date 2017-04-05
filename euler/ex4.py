@@ -1,7 +1,5 @@
 __author__ = 'davide'
 
-import itertools as it
-
 
 def is_palindrome(n):
     s = str(n)

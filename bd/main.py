@@ -1,6 +1,6 @@
 __author__ = 'Kami'
 
-from funcdep import FuncDep, keys_of, reduce_set, merge
+from bd.funcdep import FuncDep, keys_of, reduce_set, merge
 
 
 def load_set(path):

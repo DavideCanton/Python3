@@ -1,6 +1,7 @@
 __author__ = 'Davide'
 
 from collections import namedtuple
+
 import numpy as np
 
 
@@ -27,17 +28,23 @@ def make_double_stochastic_matrix(m):
 def main():
     Team = namedtuple("Team", "name country round")
 
-    fst_teams = [Team("Real Madrid", "ES", "B"), Team("Barcelona", "ES", "F"),
-                 Team("Bayern Monaco", "G", "E"), Team("Chelsea", "EN", "G"),
-                 Team("Atletico Madrid", "ES", "A"), Team("Porto", "P", "H"),
-                 Team("Borussia Dortmund", "G", "D"),
-                 Team("Monaco", "FR", "C")]
+    fst_teams = [Team("Real Madrid", "ES", "A"),
+                 Team("Barcelona", "ES", "E"),
+                 Team("Bayern Monaco", "G", "F"),
+                 Team("Chelsea", "EN", "G"),
+                 Team("Atletico Madrid", "ES", "C"),
+                 Team("Zenit", "RUS", "H"),
+                 Team("Wolfsburg", "G", "B"),
+                 Team("Manchester City", "EN", "D")]
 
-    snd_teams = [Team("Arsenal", "EN", "D"), Team("Schalke 04", "G", "G"),
-                 Team("Juventus", "IT", "A"), Team("PSG", "FR", "F"),
-                 Team("Shakhtar", "UCR", "H"), Team("Basilea", "CH", "B"),
-                 Team("Manchester City", "EN", "E"),
-                 Team("Bayern Leverkusen", "G", "C")]
+    snd_teams = [Team("Arsenal", "EN", "F"),
+                 Team("Dinamo Kiev", "UCR", "G"),
+                 Team("Juventus", "IT", "D"),
+                 Team("Roma", "IT", "E"),
+                 Team("PSG", "FR", "A"),
+                 Team("PSV Eindhoven", "ND", "B"),
+                 Team("Benfica", "P", "C"),
+                 Team("Gent", "BEL", "H")]
 
     m = np.ones((len(fst_teams), len(snd_teams)), dtype=np.float)
     for i, t1 in enumerate(fst_teams):

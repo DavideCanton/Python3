@@ -57,7 +57,7 @@ class Task:
 if __name__ == '__main__':
     task_q = Queue()
     result_q = Queue()
-    nc = cpu_count() * 5
+    nc = cpu_count() * 2
     print("Creo", nc, "consumatori")
     # nt = randint(10, 20)
     nt = 200

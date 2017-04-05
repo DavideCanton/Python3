@@ -36,8 +36,8 @@ class CoroCtx:
 
 
 if __name__ == "__main__":
-    MAX = 10000
-    FACT = 500
+    MAX = 100
+    FACT = 5
     ctx = CoroCtx(FACT, MAX)
 
     loop = asyncio.get_event_loop()

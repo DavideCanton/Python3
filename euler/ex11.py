@@ -1,8 +1,9 @@
 __author__ = 'Kami'
 
-import numpy as np
-from io import StringIO
 import itertools as it
+from io import StringIO
+
+import numpy as np
 
 nums = """08 02 22 97 38 15 00 40 00 75 04 05 07 78 52 12 50 77 91 08
 49 49 99 40 17 81 18 57 60 87 17 40 98 43 69 48 04 56 62 00
@@ -31,11 +32,11 @@ max_prod = 0
 for (i, j) in it.product(range(R), range(C)):
     # down
     p1 = np.prod(nums[i:i + 4, j])
-    #right
+    # right
     p2 = np.prod(nums[i, j:j + 4])
-    #dr
+    # dr
     p3 = np.prod(np.diag(nums[i:i + 4, j:j + 4]))
-    #ur
+    # ur
     p4 = np.prod(np.diag(nums[i:i - 4, j:j + 4][::-1, :]))
     max_prod = max(max_prod, p1, p2, p3, p4)
 

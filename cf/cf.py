@@ -81,7 +81,8 @@ def calcola_cf(cognome, nome, data, sesso, comune):
 def parse_input():
     if 1 < len(sys.argv) < 6:
         exit("Numero di parametri insufficiente")
-    elif len(sys.argv) == 1:
+
+    if len(sys.argv) == 1:
         nome = input("Nome>")
         cognome = input("Cognome>")
         sesso = input("Sesso (M/F)>")

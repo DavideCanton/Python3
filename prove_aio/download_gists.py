@@ -18,10 +18,9 @@ URL = "https://gist.github.com"
 PAGE_URL = "https://gist.github.com/{}?page={}"
 
 
-@asyncio.coroutine
-def get(*args, **kwargs):
-    response = yield from aiohttp.request('GET', *args, **kwargs)
-    return (yield from response.read())
+async def get(*args, **kwargs):
+    response = await aiohttp.request('GET', *args, **kwargs)
+    return await response.read()
 
 
 def extract_links(content):
@@ -32,10 +31,9 @@ def extract_links(content):
         yield links[1]['href']
 
 
-@asyncio.coroutine
-def download_gist(link, sem):
-    with (yield from sem):
-        content = yield from get(URL + link)
+async def download_gist(link, sem):
+    async with sem:
+        content = await get(URL + link)
 
     soup = bs4.BeautifulSoup(content)
     link = soup.find("a", text="Raw")['href']
@@ -44,26 +42,25 @@ def download_gist(link, sem):
     path = pathlib.Path(DIR, filename)
 
     print("Downloading", filename, "...")
-    with (yield from sem):
-        resp = yield from aiohttp.request('GET', URL + link)
+    async with sem:
+        resp = await aiohttp.request('GET', URL + link)
 
     with path.open("wb") as fo:
         while True:
-            with (yield from sem):
-                chunk = yield from resp.content.read(CHUNK_SIZE)
+            async with sem:
+                chunk = await resp.content.read(CHUNK_SIZE)
             if not chunk:
                 break
             fo.write(chunk)
 
 
-@asyncio.coroutine
-def process_page(page, sem, user):
-    with (yield from sem):
-        content = yield from get(PAGE_URL.format(user, page))
+async def process_page(page, sem, user):
+    async with sem:
+        content = await get(PAGE_URL.format(user, page))
 
     for link in extract_links(content):
-        with (yield from sem):
-            yield from download_gist(link, sem)
+        async with sem:
+            await download_gist(link, sem)
 
 
 def main():

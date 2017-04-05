@@ -23,7 +23,7 @@ if __name__ == '__main__':
     pinger = Pinger(timeout)
     result = {}
 
-    net_ip = ipaddress.IPv4Network("160.97.59.96/28")
+    net_ip = ipaddress.IPv4Network("192.168.1.0/24")
 
     for ip in net_ip:
         print("Pinging", ip, end=' ')

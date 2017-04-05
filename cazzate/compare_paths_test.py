@@ -1,7 +1,7 @@
-from time import perf_counter as timer
 import os
 import pathlib
 from contextlib import suppress
+from time import perf_counter as timer
 
 
 def count_file_walk(path: pathlib.Path):
@@ -25,6 +25,7 @@ def count_file_rec(path: pathlib.Path):
 
     return count
 
+
 def count_file_scandir(path: pathlib.Path):
     count = 0
 
@@ -36,6 +37,7 @@ def count_file_scandir(path: pathlib.Path):
             count += 1
 
     return count
+
 
 def main():
     path = pathlib.Path(r"C:/Users/Davide/Pictures")
@@ -51,6 +53,7 @@ def main():
     cur = timer()
     n = count_file_scandir(path)
     print("Scandir:", n, "time:", timer() - cur)
+
 
 if __name__ == "__main__":
     main()

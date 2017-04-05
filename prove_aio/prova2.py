@@ -3,16 +3,14 @@ __author__ = 'davide'
 import asyncio
 
 
-@asyncio.coroutine
-def compute(x, y):
+async def compute(x, y):
     print("Compute %s + %s ..." % (x, y))
-    yield from asyncio.sleep(1.0)
+    await asyncio.sleep(1.0)
     return x + y
 
 
-@asyncio.coroutine
-def print_sum(x, y):
-    result = yield from compute(x, y)
+async def print_sum(x, y):
+    result = await compute(x, y)
     print("%s + %s = %s" % (x, y, result))
 
 

@@ -1,8 +1,8 @@
 __author__ = 'davide'
 
-import numpy as np
 import operator
-from collections import defaultdict
+
+import numpy as np
 
 
 class Board:
@@ -69,7 +69,7 @@ class Board:
 
         for i in range(self.n):
             if (not check_all(self.matrix[:, i]) or
-                not check_all(self.matrix[i, :])):
+                    not check_all(self.matrix[i, :])):
                 return False
         return True
 

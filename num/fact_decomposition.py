@@ -40,7 +40,7 @@ def my_product(iterable):
 
 
 def main():
-    n = 4
+    n = 400000
     fact = math.factorial(n)
 
     decomposition = fact_decomposition(n)

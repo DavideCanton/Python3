@@ -24,5 +24,5 @@ if __name__ == "__main__":
         if s == 2:
             count += 1
         incr(n, MAX)
-        print(n)
+        #print(n)
     print(count)

@@ -6,8 +6,7 @@ import random
 
 
 def iterate(func, nums, acc=0):
-    acc_func = lambda acc, _: func(acc)
-    return ft.reduce(acc_func, range(nums), acc)
+    return ft.reduce(lambda acc, _: func(acc), range(nums), acc)
 
 
 def bounds(iterable, key=None):

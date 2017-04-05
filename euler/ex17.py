@@ -34,25 +34,24 @@ DEFAULTS = {
 
 
 def wordize(n):
-    print(n, end=" ")
+    # print(n, end=" ")
     s = []
     if n >= 1000:
-        r = n // 1000
+        r, n = divmod(n, 1000)
         s.append(DEFAULTS[r] + " " + DEFAULTS[1000])
-        n %= 1000
 
     if n >= 100:
-        r = n // 100
+        r, n = divmod(n, 100)
         s.append(DEFAULTS[r] + " " + DEFAULTS[100])
-        n %= 100
 
     if n in DEFAULTS:
         s.append(DEFAULTS[n])
     elif n:
-        s.append(DEFAULTS[n // 10 * 10] + DEFAULTS[n % 10])
+        r, q = divmod(n, 10)
+        s.append(DEFAULTS[r * 10] + DEFAULTS[q])
 
     res = " and ".join(s)
-    print(res)
+    # print(res)
     return res
 
 

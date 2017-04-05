@@ -8,6 +8,7 @@ from concur import KamiSemaphore
 class A(threading.Thread):
     def __init__(self, semA, semB, mutex):
         threading.Thread.__init__(self)
+        self.setName("A")
         self.semA = semA
         self.semB = semB
         self.mutex = mutex
@@ -22,6 +23,7 @@ class A(threading.Thread):
 class B(threading.Thread):
     def __init__(self, semA, semB, mutex):
         threading.Thread.__init__(self)
+        self.setName("B")
         self.semA = semA
         self.semB = semB
         self.mutex = mutex

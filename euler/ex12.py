@@ -1,7 +1,8 @@
-__author__ = 'Kami'
-
-from euler.ex7 import genera_primi
 from multiprocessing.pool import Pool
+
+from euler._utils import genera_primi
+
+__author__ = 'Kami'
 
 
 def divisors_num(n):

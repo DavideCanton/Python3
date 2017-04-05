@@ -1,9 +1,10 @@
 __author__ = 'davide'
 
 import sys
-from PyQt5 import QtCore, QtGui
-from PyQt5.QtWidgets import QMainWindow, QApplication, QMessageBox
+
+from PyQt4.QtGui import QMainWindow, QApplication, QMessageBox
 from finestra import Ui_finestra
+
 
 class ProvaFinestra(QMainWindow, Ui_finestra):
     def __init__(self):
@@ -18,6 +19,7 @@ class ProvaFinestra(QMainWindow, Ui_finestra):
     def saluta_fun(self):
         name = self.name_edit.toPlainText()
         QMessageBox.information(self, "Saluto", "Ciao, {}!".format(name))
+
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)

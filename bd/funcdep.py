@@ -7,9 +7,9 @@ class FuncDep:
         """
         Creates a FuncDep.
         @param left: the left hand
-        @type left: set[str]
+        @type left: [str]
         @param right: the right hand
-        @type right: set[str]
+        @type right: [str]
         """
         if len(left) and len(right):
             self.left = set(left)

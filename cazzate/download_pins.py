@@ -34,7 +34,7 @@ def main():
         if g:
             not_needed.add(int(g.group(0)))
 
-    #not_needed = set()
+    # not_needed = set()
     needed = set(range(1, 305)) - not_needed
 
     out_dir = pathlib.Path("imgs")

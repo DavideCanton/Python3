@@ -1,7 +1,8 @@
 __author__ = 'davide'
 
 import numpy as np
-import numpy.linalg as l
+import numpy.random as nprand
+import numpy.linalg as nplinalg
 
 
 def doolittle(a_matrix):
@@ -22,14 +23,14 @@ def valid(A):
     if n != m:
         raise ValueError("Matrice non quadrata")
     for i in range(1, n + 1):
-        if l.det(A[:i, :i]) == 0:
+        if nplinalg.det(A[:i, :i]) == 0:
             raise ValueError("No!")
 
 
 def main():
     # A = np.array([[-2, 4, 8], [-4, 18, -16], [-6, 2, -20]])
     N = 5
-    A = np.random.random_integers(-20, 20, (N, N)).astype(np.float64)
+    A = nprand.random_integers(-20, 20, (N, N)).astype(np.float64)
     valid(A)
     L, U = doolittle(A)
     print(L)

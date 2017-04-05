@@ -43,7 +43,7 @@ def chvatal(elements, costs, subsets):
         # (target subset will be set to empty set)
         for i, sets in enumerate(subsets):
             sets.difference_update(target)
-            s[i] = len(sets) if sets else -1
+            s[i] = len(sets) or -1
 
         # end of algorithm
         if not elements:

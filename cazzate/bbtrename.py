@@ -4,8 +4,8 @@ import sys
 
 __author__ = 'davide'
 
-RE_EPISODE = re.compile(r"S(\d+)E(\d+)")
-APOSTROFI = re.compile(r"(?<=L) (?=[AEIOU])")
+RE_EPISODE = re.compile(r"[Ss](\d+)[Ee](\d+)")
+APOSTROFI = re.compile(r"(?<=[Ll])[' ]([AEIOUaeiou])")
 
 
 def remove_trail_parts(parts):
@@ -15,14 +15,19 @@ def remove_trail_parts(parts):
     return parts
 
 
+def replacer(match):
+    return "'" + match.group(1).upper()
+
+
 if __name__ == "__main__":
     # DIR = argv[1]
-    DIR = r"F:\The Big Bang Theory\8 serie"
+    DIR = r"D:\torrent"
     path = pathlib.Path(DIR)
 
     for filename in path.iterdir():
-        if "The.Big.Bang" in filename.name:
-            splitted = filename.name.split(".")
+        if "The.Big.Bang" in filename.name or "The Big Bang" in filename.name:
+            name = filename.name.replace("-", "")
+            splitted = re.split("[. ]+", name)
             extension = splitted[-1]
 
             # The.Big.Bang.Theory
@@ -36,9 +41,10 @@ if __name__ == "__main__":
                 episode = "{}x{:>02}".format(int(m.group(1)), int(m.group(2)))
 
             # Titolo e bla bla bla
-            tail = " ".join(remove_trail_parts(splitted[5:]))
+            tail = " ".join(
+                map(str.capitalize, remove_trail_parts(splitted[5:-1])))
             # Apostrofi
-            tail = re.sub(APOSTROFI, "'", tail)
+            tail = re.sub(APOSTROFI, replacer, tail)
 
             newname = "{}.{}".format(" - ".join([header, episode, tail]),
                                      extension)
