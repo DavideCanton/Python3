@@ -57,3 +57,6 @@ target/
 .settings
 .pydevproject
 .project
+
+_tokens.py
+/spotify/.cache-davide.canton5@gmail.com
